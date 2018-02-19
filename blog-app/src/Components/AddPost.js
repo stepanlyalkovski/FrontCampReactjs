@@ -62,11 +62,11 @@ class AddPost extends Component {
               <input name="tags" id="tags" type="text" onChange={this.onChange}/>
             </div>
           </div>
-          <div class="row">
-            <div class="col s2">
+          <div className="row">
+            <div className="col s2">
               <button className="waves-effect waves-light btn grey lighten-1" onClick={this.props.onCancelClick}>Cancel</button>              
             </div>
-            <div class="col s2">
+            <div className="col s2">
               <button className="waves-effect waves-light btn" type="submit">Add</button>
             </div>
           </div>
