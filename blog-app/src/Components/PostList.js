@@ -19,7 +19,7 @@ class PostList extends Component {
 
   getPostItem(post) {
     return (
-      <div class="col s8 offset-s1 post-item" key={post.id}>
+      <div className="col s8 offset-s1 post-item" key={post.id}>
         <Post post={post} />
         <div className="post-action">
           <button className="waves-effect waves-light btn red lighten-1" onClick={() => this.handlePostDelete(post.id)}>Delete</button>
@@ -30,20 +30,18 @@ class PostList extends Component {
 
   render() {
     const posts = this.filterPosts(this.props.posts);
-    const placeholder = posts == null || posts.length === 0 ? 'No articles': '';
     return (
       <div className="row">
-        {posts.map(p => this.getPostItem(p))}
-        {placeholder}
+        <div className="col s12">
+          Total items: {posts.length}
+        </div>
+        <div className="col s12">
+          {posts.map(p => this.getPostItem(p))}
+        </div>
       </div>
     );
   }
 }
 
-// PostList.propTypes = {
-//   posts: React.PropTypes.array,
-//   onPostDelete: React.PropTypes.func,
-//   filterFn: React.PropTypes.func
-// };
 
 export default PostList;

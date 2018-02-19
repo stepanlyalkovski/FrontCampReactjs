@@ -9,7 +9,7 @@ class Post extends Component {
 
   render() {
     return (
-      <article className="card grey lighten-5 z-depth-4 post">
+      <article className="card grey lighten-5 z-depth-3 post">
         <div className="card-content">
           <header>
             <h1 className="card-title">{this.post.title}</h1>
@@ -24,11 +24,6 @@ class Post extends Component {
     );
   }
 }
-
-// Post.propTypes = {
-//   post: React.PropTypes.object,
-//   onPostDelete: React.PropTypes.func
-// };
 
 
 export default Post;

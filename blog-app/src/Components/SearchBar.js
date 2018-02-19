@@ -23,9 +23,5 @@ class SearchBar extends Component {
   }
 }
 
-// SearchBar.propTypes = {
-//   onFilterTextChange: React.PropTypes.func,
-//   filterText: React.PropTypes.string
-// };
 
 export default SearchBar;

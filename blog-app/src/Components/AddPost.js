@@ -35,29 +35,26 @@ class AddPost extends Component {
 
   render() {
     return (
-      <div className="row">
+      <section className="row">
+        <h2 className="subtitle">Create Post</h2>
         <form className="col s12" onSubmit={this.handleSubmit}>
           <div className="row">
             <div className="input-field col s6">
               <label htmlFor="title">Post title</label>
-              <input  name="title" id="title" type="text" required maxLength={this.titleMaxLength} onChange={this.onChange} />
+              <input className="validate"  name="title" id="title" type="text" maxLength={this.titleMaxLength} onChange={this.onChange} required/>
             </div>
           </div>
           <div className="row">
             <div className="input-field col s12">
-              <textarea className="materialize-textarea" name="text" id="text" required placeholder="Enter text here..." maxLength={this.textMaxLength} onChange={this.onChange} cols="30" rows="10"></textarea>
+              <textarea className="materialize-textarea validate" name="text" id="text" placeholder="Enter text here..." maxLength={this.textMaxLength} onChange={this.onChange} cols="30" rows="10" required></textarea>
             </div>
           </div>
           <button className="waves-effect waves-light btn" type="submit">Add</button>
         </form>
-      </div>
+      </section>
     );
   }
 }
 
-// AddPost.propTypes = {
-//   addPost: React.PropTypes.func,
-//   author: React.PropTypes.author
-// };
 
 export default AddPost;

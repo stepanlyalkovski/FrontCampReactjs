@@ -23,4 +23,5 @@ class EditAuthor extends Component {
   }
 }
 
+
 export default EditAuthor;

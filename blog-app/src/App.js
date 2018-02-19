@@ -26,21 +26,15 @@ class App extends Component {
 
   handleAddPost(post) {
     this.setCreateMode(false);
-
     this.setState(prev => {
       prev.posts.push(post);
       return { posts: prev.posts };
     });
-
   }
 
   onPostDelete(postId) {
-    this.setState(prev => {
-      const index = prev.posts.find(p => p.postId === postId);
-      prev.posts.splice(index, 1);
-      return { posts: prev.posts };
-    });
-
+    const updatedPosts = this.state.posts.filter(p => p.id !== postId);
+    this.setState({posts: updatedPosts});
   }
 
   onFilterTextChange(filterText) {
@@ -78,12 +72,14 @@ class App extends Component {
         <main className="container">
           <h1 className="header center">Blog application</h1>
           <div className="row app-content">
-            <div className="col s2">
-              <EditAuthor author ={this.state.author} onAuthorChange={this.handleAuthorChange}/>
-              <SearchBar filterText={this.state.filterText} onFilterTextChange={this.onFilterTextChange} />
-              {!this.state.isCreateMode && <button className="waves-effect waves-light btn" onClick={this.handlePostAddClick} disabled={this.state.isPostAddBtnDisabled}>Add Post</button>}
+            <div className="col s3">
+              <div className="card-panel">
+                <EditAuthor author ={this.state.author} onAuthorChange={this.handleAuthorChange}/>
+                <SearchBar filterText={this.state.filterText} onFilterTextChange={this.onFilterTextChange} />
+                {!this.state.isCreateMode && <button className="waves-effect waves-light btn" onClick={this.handlePostAddClick} disabled={this.state.isPostAddBtnDisabled}>Add Post</button>}
+              </div>     
             </div>
-            <div className="col s9 offset-s1">
+            <div className="col s8 offset-s1">
               {!this.state.isCreateMode && <PostList posts={this.state.posts} filterFn={this.getFilterFn(this.state.filterText)} onPostDelete={this.onPostDelete} />}
               {this.state.isCreateMode && <AddPost author ={this.state.author} addPost={this.handleAddPost} />}
             </div>
