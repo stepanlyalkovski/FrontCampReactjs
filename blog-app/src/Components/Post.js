@@ -16,6 +16,9 @@ class Post extends Component {
             <p className="post-date">Posted at <time dateTime={this.post.date}>{this.post.localDate}</time></p>
           </header>
           <p className="card-content">{this.post.text}</p>
+          <div className="post-tag-list">
+            {this.post.tags.map(tag => <span key={tag} className='chip'>{tag}</span>)}
+          </div>
           <footer>
             Author: {this.post.author}
           </footer>

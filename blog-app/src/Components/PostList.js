@@ -12,11 +12,6 @@ class PostList extends Component {
     this.props.onPostDelete(postId);
   }
 
-  filterPosts(posts) {
-    const filterFn = this.props.filterFn;
-    return filterFn == null ? posts : posts.filter(filterFn);
-  }
-
   getPostItem(post) {
     return (
       <div className="col s8 offset-s1 post-item" key={post.id}>
@@ -29,14 +24,10 @@ class PostList extends Component {
   }
 
   render() {
-    const posts = this.filterPosts(this.props.posts);
     return (
       <div className="row">
         <div className="col s12">
-          Total items: {posts.length}
-        </div>
-        <div className="col s12">
-          {posts.map(p => this.getPostItem(p))}
+          {this.props.posts.map(p => this.getPostItem(p))}
         </div>
       </div>
     );

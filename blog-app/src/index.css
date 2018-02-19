@@ -37,3 +37,11 @@ h1 {
 .post-action {
   text-align: right;
 }
+
+.post-tag-list {
+  margin: 15px 0;
+}
+
+.post-tag-label {
+  margin-right: 10px;
+}

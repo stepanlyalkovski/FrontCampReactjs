@@ -4,9 +4,7 @@ import uuid from 'uuid';
 class AddPost extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    }
+    this.state = {};
 
     this.textMaxLength = 300;
     this.titleMaxLength = 30;
@@ -22,11 +20,20 @@ class AddPost extends Component {
   }
 
   handleSubmit(e) {
+    const title = this.state.title;
+    const text = this.state.text;
+    let tagsSet = [];
+    if (this.state.tags) {
+      tagsSet = new Set(this.state.tags.split(',').map(t => t.trim()))
+    }
+
     const createdPost = {
       id: uuid.v4(),
+      title,
+      text,
+      tags: [...tagsSet],
       date: new Date(),
       author: this.props.author,
-      ...this.state
     };
 
     this.props.addPost(createdPost);
@@ -47,6 +54,12 @@ class AddPost extends Component {
           <div className="row">
             <div className="input-field col s12">
               <textarea className="materialize-textarea validate" name="text" id="text" placeholder="Enter text here..." maxLength={this.textMaxLength} onChange={this.onChange} cols="30" rows="10" required></textarea>
+            </div>
+          </div>
+          <div className="row">
+            <div className="input-field col s6">
+              <label htmlFor="tags">Tags <small>(separate by comma)</small></label>
+              <input name="tags" id="tags" type="text" onChange={this.onChange}/>
             </div>
           </div>
           <button className="waves-effect waves-light btn" type="submit">Add</button>

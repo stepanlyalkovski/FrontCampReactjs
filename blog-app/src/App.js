@@ -41,12 +41,12 @@ class App extends Component {
     this.setState({ filterText: filterText });
   }
 
-  getFilterFn(filterText) {
-    if(!filterText) {
-      return null;
+  filterPosts(posts, filterText) {
+    if (!filterText) {
+      return posts;
     }
 
-    return post => post.author === filterText;
+    return posts.filter(p => p.author === filterText);
   }
 
   handleAuthorChange(author) {
@@ -63,6 +63,8 @@ class App extends Component {
   }
 
   render() {
+    const filteredPosts = this.filterPosts(this.state.posts, this.state.filterText);
+    
     return (
       <div>
         <nav className=" grey darken-3" role="navigation">
@@ -76,11 +78,16 @@ class App extends Component {
               <div className="card-panel">
                 <EditAuthor author ={this.state.author} onAuthorChange={this.handleAuthorChange}/>
                 <SearchBar filterText={this.state.filterText} onFilterTextChange={this.onFilterTextChange} />
+                <div className="row">
+                  <div className="col s12">
+                    Total items: {filteredPosts.length}
+                  </div>
+                </div>
                 {!this.state.isCreateMode && <button className="waves-effect waves-light btn" onClick={this.handlePostAddClick} disabled={this.state.isPostAddBtnDisabled}>Add Post</button>}
               </div>     
             </div>
             <div className="col s8 offset-s1">
-              {!this.state.isCreateMode && <PostList posts={this.state.posts} filterFn={this.getFilterFn(this.state.filterText)} onPostDelete={this.onPostDelete} />}
+              {!this.state.isCreateMode && <PostList posts={filteredPosts} onPostDelete={this.onPostDelete} />}
               {this.state.isCreateMode && <AddPost author ={this.state.author} addPost={this.handleAddPost} />}
             </div>
           </div>
