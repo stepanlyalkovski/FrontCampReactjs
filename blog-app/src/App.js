@@ -22,6 +22,7 @@ class App extends Component {
     this.onFilterTextChange = this.onFilterTextChange.bind(this);
     this.handleAuthorChange = this.handleAuthorChange.bind(this);
     this.handlePostAddClick = this.handlePostAddClick.bind(this);
+    this.handleCancelClick = this.handleCancelClick.bind(this);
   }
 
   handleAddPost(post) {
@@ -58,6 +59,10 @@ class App extends Component {
     this.setCreateMode(true);
   }
 
+  handleCancelClick() {
+    this.setCreateMode(false);
+  }
+
   setCreateMode(isCreateMode) {
     this.setState(prev => ({isCreateMode: isCreateMode}));
   }
@@ -88,7 +93,7 @@ class App extends Component {
             </div>
             <div className="col s8 offset-s1">
               {!this.state.isCreateMode && <PostList posts={filteredPosts} onPostDelete={this.onPostDelete} />}
-              {this.state.isCreateMode && <AddPost author ={this.state.author} addPost={this.handleAddPost} />}
+              {this.state.isCreateMode && <AddPost author ={this.state.author} addPost={this.handleAddPost} onCancelClick={this.handleCancelClick} />}
             </div>
           </div>
         </main>
